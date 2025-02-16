@@ -1,0 +1,23 @@
+services:
+  guacamole:
+    image: oznu/guacamole:armhf
+    container_name: guacamole
+    networks:
+        - dock_net
+    ports:
+      - "8089:8080"  # Mappa la porta 8089 locale alla porta 8080 del container
+    volumes:
+      - ./guacamole_config:/config  # Usa il volume Docker per le configurazioni persistenti
+    restart: unless-stopped  # Riavvia automaticamente il container a meno che non sia stato fermato manualmente
+
+networks:
+     dock_net:
+         external: true  # Usa la stessa rete
+
+volumes:
+  guacamole_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_HOME/guacamole/  # Il percorso personalizzato

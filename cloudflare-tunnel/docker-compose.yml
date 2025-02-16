@@ -1,0 +1,33 @@
+# service description
+services:
+
+  # cloudflare tunnel
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared
+    #build:
+    #  context: ./src
+    #  dockerfile: ./Dockerfile
+    container_name: cloudflare-tunnel
+    hostname: e3-pi4-ksgr01
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    network_mode: "host"
+    command: tunnel run
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/hosts:/etc/hosts
+    environment:
+      - "TUNNEL_TOKEN=${TOKEN}"
+    healthcheck:
+      test: ["CMD", "cloudflared", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      # enbale watchtower updates
+      - "com.centurylinklabs.watchtower.enable=true"

@@ -1,0 +1,21 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    networks:
+       - dock_net
+    ports:
+      - "9000:9000"
+      - "9443:9443"
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+networks:
+     dock_net:
+         external: true  # Usa la stessa rete
+
+volumes:
+  data:
+

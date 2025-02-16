@@ -1,0 +1,24 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    networks:
+        - dock_net
+    ports:
+      - "3001:3001"  # Mappa la porta 3001 locale alla porta 3001 del container
+    volumes:
+      - ./uptime_config:/app/data  # Usa il volume Docker per i dati persistenti
+    restart: unless-stopped  # Riavvia sempre il container in caso di errore o riavvio del sistema
+
+networks:
+     dock_net:
+         external: true  # Usa la stessa rete
+
+volumes:
+  uptime_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_HOME/uptime-kuma/  # Il percorso personalizzato
+

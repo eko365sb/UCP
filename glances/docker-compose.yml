@@ -1,0 +1,18 @@
+services:
+  monitoring:
+    image: nicolargo/glances:latest
+    networks:
+      - dock_net
+    restart: always
+    pid: host
+    ports:
+      - 61208-61209:61208-61209
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/os-release:/etc/os-release:ro
+    environment:
+      - "GLANCES_OPT=-w"
+
+networks:
+     dock_net:
+         external: true  # Usa la stessa rete 
