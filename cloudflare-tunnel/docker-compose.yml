@@ -8,7 +8,10 @@ services:
     #  context: ./src
     #  dockerfile: ./Dockerfile
     container_name: cloudflare-tunnel
-    hostname: e3-pi4-ksgr01
+    environment:
+      - "TUNNEL_TOKEN=${TOKEN}"
+      - "HOSTNAME=${HOSTNAME}"
+    hostname: ${HOSTNAME}
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -20,8 +23,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config/hosts:/etc/hosts
-    environment:
-      - "TUNNEL_TOKEN=${TOKEN}"
     healthcheck:
       test: ["CMD", "cloudflared", "--version"]
       interval: 30s
