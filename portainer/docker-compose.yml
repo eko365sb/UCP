@@ -11,11 +11,9 @@ services:
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
-
 networks:
      dock_net:
          external: true  # Usa la stessa rete
-
 volumes:
   data:
 
