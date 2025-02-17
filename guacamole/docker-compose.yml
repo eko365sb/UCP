@@ -13,11 +13,3 @@ services:
 networks:
      dock_net:
          external: true  # Usa la stessa rete
-
-volumes:
-  guacamole_config:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: $DOCKER_HOME/guacamole/  # Il percorso personalizzato
