@@ -13,12 +13,3 @@ services:
 networks:
      dock_net:
          external: true  # Usa la stessa rete
-
-volumes:
-  uptime_config:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: $DOCKER_HOME/uptime-kuma/  # Il percorso personalizzato
-
