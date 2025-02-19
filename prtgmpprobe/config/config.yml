@@ -1,0 +1,6 @@
+ccess_key: YOUR_PROBE_ACCESS_KEY
+nats:
+  url: tls://localhost:23561
+  authentication:
+    user: USER
+    password: PASSWORD
