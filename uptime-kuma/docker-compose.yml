@@ -2,6 +2,7 @@ services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
+    user: "1000:1000"
     networks:
         - dock_net
     ports:
