@@ -2,6 +2,7 @@ services:
   netalertx:
     container_name: netalertx
     image: "jokobsk/netalertx:latest"
+    user: "1000:1000"
     network_mode: "host"
     restart: unless-stopped
     volumes:
