@@ -2,6 +2,7 @@ services:
   guacamole:
     image: oznu/guacamole:armhf
     container_name: guacamole
+    user: "1000:1000"
     networks:
         - dock_net
     ports:
