@@ -4,7 +4,9 @@ services:
   prtgmpprobe:
     build: .
     image: paessler/multi-platform-probe:latest
-    user: 1000:1000
+    user: "1000:1000"
+    networks:
+        - dock_net
     restart: unless-stopped
 
     network_mode: "bridge"
