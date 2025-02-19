@@ -2,6 +2,7 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
+    user: "1000:1000"
     networks:
        - dock_net
     ports:
