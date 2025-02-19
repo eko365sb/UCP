@@ -1,6 +1,7 @@
 services:
   monitoring:
     image: nicolargo/glances:latest
+    user: "1000:1000"
     networks:
       - dock_net
     restart: always
