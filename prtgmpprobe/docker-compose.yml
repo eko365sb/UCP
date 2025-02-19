@@ -19,6 +19,6 @@ services:
       - NET_ADMIN # for gosu and icmp
       - NET_RAW   # for icmp
 
-    networks:
-       dock_net:
-         external: true  # Usa la stessa rete
+networks:
+  dock_net:
+      external: true  # Usa la stessa rete
