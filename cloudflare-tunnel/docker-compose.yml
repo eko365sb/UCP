@@ -12,6 +12,9 @@ services:
       - "TUNNEL_TOKEN=${TOKEN}"
       - "HOSTNAME=${HOSTNAME}"
     hostname: ${HOSTNAME}
+    dns:
+      - ${DNS_SERVERS}
+      - 1.1.1.1
     restart: unless-stopped
     logging:
       driver: "json-file"
